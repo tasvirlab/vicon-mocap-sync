@@ -28,16 +28,16 @@
   "devDependencies": {
     "@types/node": "^20.11.24",
     "@types/three": "^0.162.0",
-    "@vitejs/plugin-vue": "^5.0.0",
+    "@vitejs/plugin-vue": "^6.0.0",
     "autoprefixer": "^10.4.18",
-    "electron": "^29.1.1",
-    "electron-builder": "^24.13.3",
-    "electron-vite": "^2.0.0",
+    "electron": "^45.5.0",
+    "electron-builder": "^26.18.0",
+    "electron-vite": "^5.0.0",
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3",
-    "vite": "^5.1.4",
-    "vue-tsc": "^2.2.12"
+    "vite": "^7.3.8",
+    "vue-tsc": "^3.3.14"
   },
   "build": {
     "appId": "io.github.tasvirlab.vicon-mocap-sync",
@@ -64,5 +64,8 @@
     "url": "git+https://github.com/tasvirlab/vicon-mocap-sync.git"
   },
   "homepage": "https://github.com/tasvirlab/vicon-mocap-sync#readme",
-  "private": true
+  "private": true,
+  "engines": {
+    "node": ">=20.19"
+  }
 }
