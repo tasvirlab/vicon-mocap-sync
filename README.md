@@ -157,18 +157,9 @@ docs/                 user guide, engineering notes, method notes
 
 The front end starts both backends from the Electron main process and talks to them over `127.0.0.1`. See [CONTRIBUTING.md](CONTRIBUTING.md) and [SECURITY.md](SECURITY.md).
 
-## Assumptions and limitations
+## Documentation
 
-- The pipeline assumes an 8-task protocol (lifting, overhead work, forward trunk bending, squatting, kneeling, handling, carrying, trunk flexion with twisting) and subject IDs of the form `SUB01`. Trial folders are named `<subject>_<task>_T<NN>`.
-- The Vicon marker set is a 21-point layout (see [engineering notes](docs/engineering-notes.md)).
-- ISO 11226 holding-time limits are provisional and flagged as unverified in every output; see [docs/methods](docs/methods).
-- Cross-correlation sync refinement depends on visible movement; always review trials flagged `needs_review`.
-
-## Third-party components
-
-- [RTMPose](https://github.com/open-mmlab/mmpose) via [rtmlib](https://github.com/Tau-J/rtmlib) for 2D keypoints (models are downloaded on first use).
-- The BlazeFace model in `sync/backend/models_cache` is distributed with [MediaPipe](https://github.com/google-ai-edge/mediapipe) under Apache-2.0 and is used for optional face blurring.
-- [ezc3d](https://github.com/pyomeca/ezc3d), OpenCV, FastAPI, Vue, Electron and Tailwind CSS, each under its own license.
+Designed for the documented motion-capture protocol. ISO 11226 duration limits are provisional. See the [engineering notes](docs/engineering-notes.md#assumptions-and-limitations) for supported inputs, validation limits and [third-party components](docs/engineering-notes.md#third-party-components).
 
 ## License and developer
 
