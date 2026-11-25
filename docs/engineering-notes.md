@@ -78,3 +78,15 @@ One folder per trial: `outputs/<subject>/<NN_task>/<subject>_<task>_T<NN>/` with
 
 `npm run dist` builds an NSIS installer, but the installed app cannot start its backends: only `out/` and `node_modules/` are packaged, so the two `backend/` folders (and the conda environments they need) are missing and spawning them fails with `ENOENT`. The window opens without a working pipeline, and no application icon is bundled. The supported way to run the application is `setup.bat` and `start.bat`. A standalone installer needs the backends and a Python runtime shipped as `extraResources` and the path lookup in `frontend/src/main/index.ts` changed accordingly.
 
+## Assumptions and limitations
+
+- The pipeline assumes an 8-task protocol (lifting, overhead work, forward trunk bending, squatting, kneeling, handling, carrying, trunk flexion with twisting) and subject IDs of the form `SUB01`. Trial folders are named `<subject>_<task>_T<NN>`.
+- The Vicon marker set is a 21-point layout (see [Coordinates and units](#coordinates-and-units)).
+- ISO 11226 holding-time limits are provisional and flagged as unverified in every output; see [method notes](methods).
+- Cross-correlation sync refinement depends on visible movement; always review trials flagged `needs_review`.
+
+## Third-party components
+
+- [RTMPose](https://github.com/open-mmlab/mmpose) via [rtmlib](https://github.com/Tau-J/rtmlib) for 2D keypoints (models are downloaded on first use).
+- The BlazeFace model in `sync/backend/models_cache` is distributed with [MediaPipe](https://github.com/google-ai-edge/mediapipe) under Apache-2.0 and is used for optional face blurring.
+- [ezc3d](https://github.com/pyomeca/ezc3d), OpenCV, FastAPI, Vue, Electron and Tailwind CSS, each under its own license.
