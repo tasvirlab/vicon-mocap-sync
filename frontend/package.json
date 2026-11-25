@@ -1,0 +1,68 @@
+{
+  "name": "vicon-mocap-sync",
+  "version": "1.0.0",
+  "description": "ViconMoCap Sync Studio — calibration + synchronization pipeline for Vicon motion capture and smartphone video",
+  "type": "module",
+  "main": "./out/main/index.js",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "web": "vite --config vite.config.web.ts",
+    "build:web": "vite build --config vite.config.web.ts",
+    "build": "electron-vite build",
+    "preview": "electron-vite preview",
+    "start": "electron-vite dev",
+    "dist": "npm run build && electron-builder",
+    "typecheck": "vue-tsc --noEmit -p tsconfig.web.json"
+  },
+  "dependencies": {
+    "@fontsource-variable/geist": "^5.3.0",
+    "@fontsource-variable/geist-mono": "^5.3.0",
+    "@lucide/vue": "^1.16.0",
+    "axios": "^1.6.7",
+    "clsx": "^2.1.0",
+    "tailwind-merge": "^2.2.1",
+    "three": "^0.162.0",
+    "vue": "^3.4.0",
+    "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "@types/three": "^0.162.0",
+    "@vitejs/plugin-vue": "^5.0.0",
+    "autoprefixer": "^10.4.18",
+    "electron": "^29.1.1",
+    "electron-builder": "^24.13.3",
+    "electron-vite": "^2.0.0",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.1.4",
+    "vue-tsc": "^2.2.12"
+  },
+  "build": {
+    "appId": "io.github.tasvirlab.vicon-mocap-sync",
+    "productName": "ViconMoCap Sync Studio",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "out/**/*",
+      "node_modules/**/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "resources/icon.ico"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "resources/icon.icns"
+    }
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tasvirlab/vicon-mocap-sync.git"
+  },
+  "homepage": "https://github.com/tasvirlab/vicon-mocap-sync#readme",
+  "private": true
+}

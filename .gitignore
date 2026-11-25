@@ -1,0 +1,20 @@
+node_modules/
+*.tsbuildinfo
+dist/
+out/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.conda_path
+.env
+
+# runtime data and local configuration
+logs/
+temp/
+cache/
+calibration/exports
+calibration/config.json
+sync/outputs
+sync/config.json
+sync/exports

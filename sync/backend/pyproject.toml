@@ -1,0 +1,6 @@
+[tool.pytest.ini_options]
+# Lets `pytest` (run from backend/) discover the existing self-contained
+# test_*.py modules alongside their own `python -m module` self-check style —
+# both work; pytest just gives a single command across all of them.
+testpaths = ["core", "utils", "tests"]
+python_files = ["test_*.py"]

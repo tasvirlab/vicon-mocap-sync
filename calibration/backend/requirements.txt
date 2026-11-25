@@ -1,0 +1,17 @@
+# Exact-pinned, not >=: an unpinned floor let a routine rebuild silently jump
+# to OpenCV 5.0.0, which changed cv2.norm()'s type-checking strictness and
+# broke code that worked fine on older versions. Bump deliberately, not as a
+# side effect of a rebuild.
+opencv-contrib-python==5.0.0.93
+fastapi>=0.110.0
+uvicorn[standard]>=0.27.0
+python-multipart>=0.0.9
+ezc3d>=1.5.0
+reportlab>=4.1.0
+Pillow>=10.0.0
+sse-starlette>=1.8.2
+aiofiles>=23.2.1
+numpy>=1.24
+scipy>=1.11
+matplotlib>=3.7
+pandas>=2.0

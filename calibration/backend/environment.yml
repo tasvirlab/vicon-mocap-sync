@@ -1,0 +1,21 @@
+name: calib_app
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - numpy>=1.24
+  - scipy>=1.11
+  - matplotlib>=3.7
+  - pip
+  - pip:
+      - opencv-contrib-python>=4.8.0
+      - fastapi>=0.110.0
+      - uvicorn[standard]>=0.27.0
+      - python-multipart>=0.0.9
+      - ezc3d>=1.5.0
+      - reportlab>=4.1.0
+      - Pillow>=10.0.0
+      - sse-starlette>=1.8.2
+      - aiofiles>=23.2.1
+      - pytest>=8

@@ -1,0 +1,28 @@
+name: sync_app
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - numpy>=1.24
+  - scipy>=1.11
+  - matplotlib>=3.7
+  - pandas>=2.0
+  - pip
+  - pip:
+      - ezc3d>=1.5.0
+      - opencv-contrib-python>=4.8.0
+      - fastapi>=0.110.0
+      - uvicorn[standard]>=0.27.0
+      - python-multipart>=0.0.9
+      - aiofiles>=23.2.1
+      - sse-starlette>=1.8.2
+      - rtmlib>=0.0.13
+      # GPU inference (optional); falls back to the CPU provider when CUDA is unavailable.
+      - onnxruntime-gpu>=1.19.0
+      - mediapipe>=0.10.14
+      - python-dotenv>=1.0.0
+      - pytest>=8
+      # ByteTrack (face_blur.py's tracker) is deprecated in supervision and removed in
+      # 0.30.0 — pin below 0.30 until face_blur.py is ported to its replacement.
+      - supervision>=0.29.0,<0.30.0
