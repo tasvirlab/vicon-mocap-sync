@@ -36,7 +36,7 @@ def _with_outputs(fn):
         trial = outputs / "SUB01" / "01_lifting" / TRIAL
         (trial / "qa").mkdir(parents=True)
         (trial / "qa" / "note.txt").write_text("ok")
-        (root / "secret.txt").write_text("secret")
+        (root / "secret.txt").write_text("TOP-SECRET-CONTENT")
         app_config.get_outputs_dir = lambda: outputs
         try:
             fn(root, trial)
@@ -56,7 +56,7 @@ def test_file_download_cannot_leave_trial_folder():
         for name in ("../../../../../secret.txt", "..\\..\\..\\..\\..\\secret.txt", "../note.txt"):
             r = request(main.app, path=f"/api/projects/{TRIAL}/file/{name}")
             assert r["status"] in (400, 404), (name, r["status"])
-            assert b"secret" not in r["body"], name
+            assert b"TOP-SECRET-CONTENT" not in r["body"], name
     _with_outputs(check)
 
 

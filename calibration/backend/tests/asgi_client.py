@@ -10,8 +10,13 @@ def request(app, method="GET", path="/", headers=None, host="127.0.0.1"):
              "client": ("127.0.0.1", 50000), "scheme": "http", "root_path": ""}
     out = {"status": None, "headers": {}, "body": b""}
 
+    sent = []
+
     async def receive():
-        return {"type": "http.request", "body": b"", "more_body": False}
+        if not sent:
+            sent.append(True)
+            return {"type": "http.request", "body": b"", "more_body": False}
+        await asyncio.Event().wait()  # the client never disconnects; Starlette cancels this listener when the response ends
 
     async def send(msg):
         if msg["type"] == "http.response.start":
