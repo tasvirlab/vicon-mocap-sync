@@ -37,7 +37,7 @@ def _with_exports(fn):
         root = Path(d)
         (root / "SUB" / "run").mkdir(parents=True)
         (root / "SUB" / "run" / "ok.txt").write_text("ok")
-        (root / "secret.txt").write_text("secret")
+        (root / "secret.txt").write_text("TOP-SECRET-CONTENT")
         app_config.get_exports_dir = lambda: root
         try:
             fn()
@@ -57,5 +57,5 @@ def test_file_download_cannot_leave_project_folder():
         for name in ("..\\..\\secret.txt", "..\\..\\..\\secret.txt", "..", "."):
             r = request(main.app, path=f"/api/projects/SUB/run/file/{name}")
             assert r["status"] in (400, 404), (name, r["status"])
-            assert b"secret" not in r["body"], name
+            assert b"TOP-SECRET-CONTENT" not in r["body"], name
     _with_exports(check)
