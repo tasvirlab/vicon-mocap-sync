@@ -73,3 +73,8 @@ The REBA stage writes three separate outputs and never fuses them: posture sever
 ## Output layout
 
 One folder per trial: `outputs/<subject>/<NN_task>/<subject>_<task>_T<NN>/` with `metadata.json`, `sync.json`, `synced_60hz.csv`, `synced_vicon2d_60hz.csv`, `frame_mapping.csv`, `rgb.mp4`, `pose2d_rtmpose.csv`, `reba/` and `qa/`. A folder without `metadata.json` is invisible to discovery. Build paths with `utils/task_paths.py`; never hardcode file names.
+
+## Packaging status
+
+`npm run dist` builds an NSIS installer, but the installed app cannot start its backends: only `out/` and `node_modules/` are packaged, so the two `backend/` folders (and the conda environments they need) are missing and spawning them fails with `ENOENT`. The window opens without a working pipeline, and no application icon is bundled. The supported way to run the application is `setup.bat` and `start.bat`. A standalone installer needs the backends and a Python runtime shipped as `extraResources` and the path lookup in `frontend/src/main/index.ts` changed accordingly.
+

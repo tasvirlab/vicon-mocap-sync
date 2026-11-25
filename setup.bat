@@ -53,14 +53,14 @@ if %errorlevel% neq 0 (
 )
 echo.
 
-:: -- Two conda environments (one per backend; their logic is unchanged) ------
+:: -- Two conda environments (one per backend) -----------------------------------
 echo [1/4] Calibration backend  (conda env 'calib_app')...
-"%CONDA_EXE%" env create -f "%~dp0calibration\backend\environment.yml"
-if %errorlevel% neq 0 "%CONDA_EXE%" env update -f "%~dp0calibration\backend\environment.yml" --prune
+call :make_env calib_app "%~dp0calibration\backend\environment.yml"
+if errorlevel 1 goto :env_failed
 echo.
 echo [2/4] Sync backend         (conda env 'sync_app')...
-"%CONDA_EXE%" env create -f "%~dp0sync\backend\environment.yml"
-if %errorlevel% neq 0 "%CONDA_EXE%" env update -f "%~dp0sync\backend\environment.yml" --prune
+call :make_env sync_app "%~dp0sync\backend\environment.yml"
+if errorlevel 1 goto :env_failed
 echo.
 
 :: -- Frontend ------------------------------------------------------------------
@@ -86,3 +86,20 @@ echo =================================================
 echo   Setup complete. Run start.bat to launch.
 echo =================================================
 pause
+exit /b 0
+
+:: -- Helpers -------------------------------------------------------------------
+:make_env
+:: %1 = environment name, %2 = environment.yml. Creates it, or updates it if it already exists.
+call "%CONDA_EXE%" env create -f %2
+if not errorlevel 1 exit /b 0
+echo [INFO]  Create failed (the environment may already exist); trying an update...
+call "%CONDA_EXE%" env update -f %2 --prune
+exit /b %errorlevel%
+
+:env_failed
+echo.
+echo [ERROR] Could not create or update the conda environment (see the messages above).
+echo         Setup did not finish. Check the internet connection and run setup.bat again.
+pause
+exit /b 1
